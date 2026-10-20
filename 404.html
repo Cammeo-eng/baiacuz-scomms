@@ -2,22 +2,26 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<script>
+  // funciona em usuario.github.io/repo/ e em domínio próprio
+  document.write('<base href="' + (location.hostname.slice(-10) === '.github.io' ? '/' + location.pathname.split('/')[1] + '/' : '/') + '">');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>404 — Baiacuz</title>
 <meta name="robots" content="noai, noimageai, noindex">
-<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&family=Jost:wght@300;400&family=Rubik+Puddles&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main class="nf">
   <span class="sparkle" style="top:22%;left:18%">✦</span>
   <span class="sparkle" style="top:60%;right:20%;animation-delay:1s">✦</span>
   <div>
-    <img src="/img/mascote.png" alt="" onerror="this.onerror=null;this.src='/img/placeholder.svg'">
+    <img src="img/mascote.png" alt="" onerror="this.onerror=null;this.src='img/placeholder.svg'">
     <h1 class="chrome">404</h1>
     <p class="subtitle" id="msg">Ops… essa página se escondeu. ✦</p>
-    <a class="btn btn-primary" href="/" id="back">Voltar ao início</a>
+    <a class="btn btn-primary" href="./" id="back">Voltar ao início</a>
   </div>
 </main>
 <script>
