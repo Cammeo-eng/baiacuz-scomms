@@ -140,16 +140,12 @@
 <section id="processo" class="section">
   <h3 class="sec-title reveal" data-i18n="process_title"></h3>
   <p class="subtitle center reveal" data-i18n="process_sub"></p>
-  <div class="process">
-    <button type="button" class="proc-card reveal" data-proc="0" aria-label="Esboço / Sketch">
-      <span class="proc-img"><img src="img/processo-esboco.jpg" data-fallback="img/placeholder-6.svg" alt="" loading="lazy"></span>
-      <span class="proc-cap" data-i18n="sketch"></span>
-    </button>
-    <div class="proc-link" aria-hidden="true"><span>✦</span></div>
-    <button type="button" class="proc-card reveal" data-proc="1" aria-label="Arte final / Final art">
-      <span class="proc-img"><img src="img/processo-final.jpg" data-fallback="img/placeholder-2.svg" alt="" loading="lazy"></span>
-      <span class="proc-cap" data-i18n="final_art"></span>
-    </button>
+  <div class="compare reveal" id="compare">
+    <img class="final-img" src="img/processo-final.jpg" data-fallback="img/placeholder-2.svg" alt="Arte final" loading="lazy">
+    <div class="compare-top" id="compareTop"><img src="img/processo-esboco.jpg" data-fallback="img/placeholder-6.svg" alt="Esboço" loading="lazy"></div>
+    <span class="tag tag-l" data-i18n="sketch"></span><span class="tag tag-r" data-i18n="final_art"></span>
+    <div class="compare-handle" id="compareHandle"><i>✦</i></div>
+    <input type="range" min="0" max="100" value="50" id="compareRange" aria-label="Esboço / Sketch — Final">
   </div>
 </section>
 

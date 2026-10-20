@@ -49,7 +49,7 @@ const I18N = {
     step2: 'Mande sua referência pelo Instagram ou X.',
     step3: 'Pagamento: 50% para começar ou 100% adiantado.',
     step4: 'Esboço para aprovação, finalização e entrega.',
-    process_title: 'Do esboço à arte final', process_sub: 'toque para ver em tamanho grande', sketch: 'Esboço', final_art: 'Arte final',
+    process_title: 'Do esboço à arte final', process_sub: 'arraste para ver o processo', sketch: 'Esboço', final_art: 'Final',
     t_time_h: 'Prazo de entrega', t_time: 'De 2 a 14 dias.',
     t_pay_h: 'Pagamento', t_pay: '50% antes do início e o restante após a finalização, ou 100% adiantado.',
     t_ref_h: 'Reembolso', t_ref: 'Só antes de o esboço ser concluído. Após a aprovação do esboço, os 50% pagos não são reembolsados.',
@@ -88,7 +88,7 @@ const I18N = {
     step2: 'Send your reference via Instagram or X.',
     step3: 'Payment: 50% to start or 100% upfront.',
     step4: 'Sketch for approval, finishing and delivery.',
-    process_title: 'From sketch to final art', process_sub: 'tap to view larger', sketch: 'Sketch', final_art: 'Final art',
+    process_title: 'From sketch to final art', process_sub: 'drag to see the process', sketch: 'Sketch', final_art: 'Final art',
     t_time_h: 'Delivery time', t_time: '2 to 14 days.',
     t_pay_h: 'Payment', t_pay: '50% before starting and the rest after completion, or 100% upfront.',
     t_ref_h: 'Refunds', t_ref: 'Only before the sketch is completed. Once the sketch is approved, the 50% paid is non-refundable.',
@@ -236,16 +236,15 @@ const lb = $('#lightbox'); let lbList = [], lbPos = 0;
 function visiblePortfolio() {
   return $$('.g-item').filter(el => !el.hidden).map(el => PORTFOLIO[+el.dataset.index]);
 }
-function openLightbox(p, list) {
-  lbList = list || visiblePortfolio(); lbPos = Math.max(0, lbList.indexOf(p));
+function openLightbox(p) {
+  lbList = visiblePortfolio(); lbPos = Math.max(0, lbList.indexOf(p));
   lb.hidden = false; document.body.style.overflow = 'hidden'; showLb();
 }
 function showLb() {
   const p = lbList[lbPos];
   $('#lbImg').src = 'img/' + p.file;
-  $('#lbCaption').textContent = p.cap ? t(p.cap) : `${styleLabel(p.style)} · ${fmtLabel(p.format)}`;
+  $('#lbCaption').textContent = `${styleLabel(p.style)} · ${fmtLabel(p.format)}`;
   $('#lbBadge').hidden = !p.commission;
-  $('#lbWant').hidden = !!p.cap;
   $('#lbWant').onclick = e => { e.preventDefault(); closeLb(); goToPrice(p.style, p.format); };
 }
 function closeLb() { lb.hidden = true; document.body.style.overflow = ''; }
@@ -312,9 +311,12 @@ function onScroll() {
 addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 onScroll();
 
-/* ===== PROCESSO: abre na lightbox ===== */
-const PROCESS = [{ file: 'processo-esboco.jpg', cap: 'sketch' }, { file: 'processo-final.jpg', cap: 'final_art' }];
-$$('.proc-card').forEach(b => b.addEventListener('click', () => openLightbox(PROCESS[+b.dataset.proc], PROCESS)));
+/* ===== COMPARATIVO ===== */
+const cr = $('#compareRange');
+cr.addEventListener('input', () => {
+  $('#compareTop').style.clipPath = `inset(0 ${100 - cr.value}% 0 0)`;
+  $('#compareHandle').style.left = cr.value + '%';
+});
 
 /* ===== CARROSSEL ===== */
 (function carousel() {
