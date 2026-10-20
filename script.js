@@ -49,7 +49,7 @@ const I18N = {
     step2: 'Mande sua referência pelo Instagram ou X.',
     step3: 'Pagamento: 50% para começar ou 100% adiantado.',
     step4: 'Esboço para aprovação, finalização e entrega.',
-    process_title: 'Do esboço à arte final', process_sub: 'arraste para ver o processo', sketch: 'Esboço', final_art: 'Final',
+    process_title: 'Do esboço à arte final', process_sub: 'arraste para ver o processo', sketch: 'Esboço', final_art: 'Arte final',
     t_time_h: 'Prazo de entrega', t_time: 'De 2 a 14 dias.',
     t_pay_h: 'Pagamento', t_pay: '50% antes do início e o restante após a finalização, ou 100% adiantado.',
     t_ref_h: 'Reembolso', t_ref: 'Só antes de o esboço ser concluído. Após a aprovação do esboço, os 50% pagos não são reembolsados.',
@@ -311,11 +311,10 @@ function onScroll() {
 addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 onScroll();
 
-/* ===== COMPARATIVO ===== */
-const cr = $('#compareRange');
-cr.addEventListener('input', () => {
-  $('#compareTop').style.clipPath = `inset(0 ${100 - cr.value}% 0 0)`;
-  $('#compareHandle').style.left = cr.value + '%';
+/* ===== SLIDER ESBOÇO / ARTE FINAL ===== */
+document.querySelectorAll('.ba-slider').forEach(s=>{
+  const r=s.querySelector('.ba-range');
+  r.addEventListener('input',()=>s.style.setProperty('--pos',r.value+'%'));
 });
 
 /* ===== CARROSSEL ===== */
@@ -393,7 +392,7 @@ if (!reduceMotion) {
     }
   }
   document.addEventListener('click', e => {
-    if (e.target.closest('.g-item')) return; // galeria: lightbox abre limpa
+    if (e.target.closest('.g-item, .ba-slider')) return; // galeria: lightbox abre limpa
     if (e.target.closest(CLICK_TARGETS) || e.target.closest('a[href]')) burst(e.clientX, e.clientY);
   });
 }

@@ -140,12 +140,15 @@
 <section id="processo" class="section">
   <h3 class="sec-title reveal" data-i18n="process_title"></h3>
   <p class="subtitle center reveal" data-i18n="process_sub"></p>
-  <div class="compare reveal" id="compare">
-    <img class="final-img" src="img/processo-final.jpg" data-fallback="img/placeholder-2.svg" alt="Arte final" loading="lazy">
-    <div class="compare-top" id="compareTop"><img src="img/processo-esboco.jpg" data-fallback="img/placeholder-6.svg" alt="Esboço" loading="lazy"></div>
-    <span class="tag tag-l" data-i18n="sketch"></span><span class="tag tag-r" data-i18n="final_art"></span>
-    <div class="compare-handle" id="compareHandle"><i>✦</i></div>
-    <input type="range" min="0" max="100" value="50" id="compareRange" aria-label="Esboço / Sketch — Final">
+  <div class="ba-wrap reveal">
+    <div class="ba-slider" style="--pos:50%">
+      <img class="ba-final" src="img/processo-final.jpg" data-fallback="img/placeholder-2.svg" alt="">
+      <div class="ba-sketch-wrap"><img class="ba-sketch" src="img/processo-esboco.jpg" data-fallback="img/placeholder-6.svg" alt=""></div>
+      <div class="ba-line"><span class="ba-handle">✦</span></div>
+      <span class="ba-label ba-left" data-i18n="sketch">Esboço</span>
+      <span class="ba-label ba-right" data-i18n="final_art">Arte final</span>
+      <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar esboço e arte final">
+    </div>
   </div>
 </section>
 
