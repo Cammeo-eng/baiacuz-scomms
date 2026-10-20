@@ -358,5 +358,38 @@ if (finePointer && !reduceMotion) {
   });
 }
 
+/* ===== EXPLOSÃO DE GLITTER AO CLICAR ===== */
+if (!reduceMotion) {
+  const layer = $('#cursorLayer');
+  const CLICK_TARGETS = 'button, .btn, .pill, .price-card, .social, .lang button, .to-top, .car-btn';
+  const COLORS = ['#b9bec7', '#ffffff', '#e4d6c1', '#9aa0aa'];
+  function burst(x, y) {
+    const n = 12 + Math.floor(Math.random() * 7); // 12–18
+    for (let i = 0; i < n; i++) {
+      const star = Math.random() < .25;
+      const el = document.createElement('span');
+      const size = star ? 9 + Math.random() * 6 : 2 + Math.random() * 3;
+      const col = COLORS[Math.floor(Math.random() * COLORS.length)];
+      el.style.cssText = `position:absolute;left:${x}px;top:${y}px;pointer-events:none;` + (star
+        ? `font-size:${size}px;line-height:1;color:#fff;text-shadow:0 0 4px #9aa0aa,0 0 8px rgba(150,156,168,.7);margin:${-size / 2}px 0 0 ${-size / 2}px`
+        : `width:${size}px;height:${size}px;border-radius:50%;background:${col};box-shadow:0 0 4px rgba(150,156,168,.8);margin:${-size / 2}px 0 0 ${-size / 2}px`);
+      if (star) el.textContent = '✦';
+      layer.appendChild(el);
+      const ang = (i / n) * 6.283 + Math.random() * .5, dist = 28 + Math.random() * 38;
+      const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist, fall = 16 + Math.random() * 22;
+      const rot = (Math.random() * 160 - 80);
+      el.animate([
+        { transform: 'translate(0,0) scale(1) rotate(0)', opacity: 1 },
+        { transform: `translate(${dx}px,${dy}px) scale(1) rotate(${rot / 2}deg)`, opacity: 1, offset: .45 },
+        { transform: `translate(${dx * 1.15}px,${dy * 1.15 + fall}px) scale(.3) rotate(${rot}deg)`, opacity: 0 }
+      ], { duration: 800, easing: 'cubic-bezier(.2,.7,.4,1)', fill: 'forwards' }).onfinish = () => el.remove();
+    }
+  }
+  document.addEventListener('click', e => {
+    if (e.target.closest('.g-item')) return; // galeria: lightbox abre limpa
+    if (e.target.closest(CLICK_TARGETS) || e.target.closest('a[href]')) burst(e.clientX, e.clientY);
+  });
+}
+
 /* ===== INIT ===== */
 applyLang(pickLang());
