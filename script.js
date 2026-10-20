@@ -12,15 +12,20 @@ const PRICES = {
 // style: 'anime' | 'chibi' · format: 'icon' | 'busto' | 'fullbody' · commission: true se for arte de cliente
 // Se existir um .webp com o mesmo nome (obra.webp), ele é usado automaticamente.
 const PORTFOLIO = [
-  { file: 'placeholder-1.svg', style: 'anime', format: 'busto',    commission: true  }, // TODO: trocar pelas artes reais
-  { file: 'placeholder-2.svg', style: 'chibi', format: 'icon',     commission: true  },
-  { file: 'placeholder-3.svg', style: 'anime', format: 'fullbody', commission: false },
-  { file: 'placeholder-4.svg', style: 'chibi', format: 'fullbody', commission: true  },
-  { file: 'placeholder-5.svg', style: 'anime', format: 'icon',     commission: false },
-  { file: 'placeholder-6.svg', style: 'chibi', format: 'busto',    commission: false },
-  { file: 'placeholder-7.svg', style: 'anime', format: 'fullbody', commission: true  },
-  { file: 'placeholder-8.svg', style: 'chibi', format: 'busto',    commission: true  }
-];
+  { file: 'art-10.jpg', style: 'anime', format: 'fullbody', commission: false },
+  { file: 'art-03.jpg', style: 'anime', format: 'icon',     commission: true  },
+  { file: 'art-chibi.jpg', style: 'chibi', format: 'fullbody', commission: false }, // TODO: adicionar mais chibis
+  { file: 'art-08.jpg', style: 'anime', format: 'busto',    commission: true  },
+  { file: 'art-12.jpg', style: 'anime', format: 'fullbody', commission: false },
+  { file: 'art-02.jpg', style: 'anime', format: 'icon',     commission: false },
+  { file: 'art-07.jpg', style: 'anime', format: 'icon',     commission: true  },
+  { file: 'art-04.jpg', style: 'anime', format: 'busto',    commission: false },
+  { file: 'art-11.jpg', style: 'anime', format: 'fullbody', commission: false },
+  { file: 'art-09.jpg', style: 'anime', format: 'busto',    commission: true  },
+  { file: 'art-16.jpg', style: 'anime', format: 'busto',    commission: false },
+  { file: 'art-06.jpg', style: 'anime', format: 'icon',     commission: false },
+  { file: 'art-05.jpg', style: 'anime', format: 'icon',     commission: false }
+]; // TODO: conferir estilo/formato/commission de cada arte
 
 /* ===== TRADUÇÕES ===== */
 const I18N = {
@@ -165,7 +170,7 @@ function renderPrices() {
   grid.innerHTML = ['anime', 'chibi'].map(style => `
     <article class="price-card reveal in" data-style="${style}">
       <h3 class="chrome">${t('style_' + style)}</h3>
-      <div class="price-art"><img src="img/exemplo-${style}.png" data-fallback="img/placeholder.svg" alt="" loading="lazy"></div>
+      <div class="price-art"><img src="img/exemplo-${style}.jpg" data-fallback="img/placeholder.svg" alt="" loading="lazy"></div>
       ${['icon', 'busto', 'fullbody'].map(f => `
         <div class="price-row" data-format="${f}"><span>${t('price_' + f)}</span><b>${money(P[style][f])}</b></div>`).join('')}
     </article>`).join('');

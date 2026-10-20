@@ -183,7 +183,7 @@ h2.chrome{font-size:clamp(2.4rem,8vw,4.2rem);text-align:center;margin-bottom:.4r
   box-shadow:0 10px 30px rgba(130,120,100,.14);transition:box-shadow .6s}
 .price-card.flash{box-shadow:0 0 0 2px #c4c9d1,0 0 40px rgba(255,255,255,.95)}
 .price-card h3{font-family:var(--font-display);font-weight:400;font-size:1.9rem;text-align:center;margin-bottom:12px}
-.price-art{border-radius:12px;overflow:hidden;background:#fff;margin-bottom:16px;aspect-ratio:4/3}
+.price-art{border-radius:12px;overflow:hidden;background:#fff;margin-bottom:16px;aspect-ratio:4/5}
 .price-art img{width:100%;height:100%;object-fit:cover}
 .price-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 6px;border-bottom:1px dashed var(--beige-d);transition:background .5s,transform .5s}
 .price-row:last-child{border:0}
