@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baiacuz — Illustrator · Commissions</title>
+<meta name="description" content="Baiacuz — ilustradora anime/semirrealismo e chibi. Commissions abertas · Anime/semi-realism & chibi illustrator. Commissions open.">
+<meta name="robots" content="noai, noimageai">
+<meta name="theme-color" content="#eceef1">
+
+<!-- Open Graph (TODO: gerar img/og.jpg 1200x630) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Baiacuz ✦ Commissions">
+<meta property="og:description" content="Ilustrações anime/semirrealismo e chibi · Anime/semi-realism & chibi illustrations">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="img/logo.png" type="image/png">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Rubik+Puddles&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Loader (só na primeira visita) -->
+<div id="loader" aria-hidden="true">
+  <img src="img/mascote.png" data-fallback="img/placeholder.svg" alt="">
+  <span class="sparkle s1">✦</span><span class="sparkle s2">✦</span><span class="sparkle s3">✦</span>
+</div>
+
+<header class="topbar">
+  <a href="#top" class="brand" aria-label="Baiacuz">✦ <span>Baiacuz</span></a>
+  <nav id="nav" aria-label="menu">
+    <a href="#portfolio" data-i18n="nav_portfolio"></a>
+    <a href="#commissions" data-i18n="nav_commissions"></a>
+    <a href="#como-pedir" data-i18n="nav_how"></a>
+    <a href="#termos" data-i18n="nav_terms"></a>
+    <a href="#sobre" data-i18n="nav_about"></a>
+    <a href="#contato" data-i18n="nav_contact"></a>
+  </nav>
+  <div class="topbar-right">
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt">PT</button><span>|</span><button type="button" data-lang="en">EN</button>
+    </div>
+    <button id="menuBtn" class="menu-btn" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- CAPA -->
+<section class="hero">
+  <canvas id="glitter" aria-hidden="true"></canvas>
+  <div class="x-mark x-hero" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-name">
+        <img src="img/baiacuz-cromo.png" alt="Baiacuz" id="heroLogo">
+        <span class="chrome hero-fallback">Baiacuz</span>
+      </h1>
+      <p class="subtitle" data-i18n="hero_sub"></p>
+      <div class="seal-row">
+        <span class="seal chrome-seal" id="seal"></span>
+        <span class="slots" id="slots"></span>
+      </div>
+      <div class="btns">
+        <a class="btn btn-primary" href="#portfolio" data-i18n="btn_portfolio"></a>
+        <a class="btn" href="#commissions" data-i18n="btn_order"></a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="img/mascote.png" data-fallback="img/placeholder.svg" alt="Mascote chibi da Baiacuz" class="mascot">
+    </div>
+  </div>
+  <a href="#destaque" class="scroll-hint" aria-label="Scroll">⌄</a>
+</section>
+
+<div class="lace" aria-hidden="true"></div>
+
+<!-- DESTAQUE -->
+<section id="destaque" class="featured reveal">
+  <div class="featured-frame">
+    <img src="img/anime-destaque.jpg" data-fallback="img/placeholder-3.svg" alt="Ilustração em destaque" id="parallaxImg" loading="lazy">
+    <span class="sparkle s1">✦</span><span class="sparkle s2">✦</span>
+  </div>
+  <p class="subtitle center" data-i18n="featured_cap"></p>
+</section>
+
+<!-- PORTFÓLIO -->
+<section id="portfolio" class="section">
+  <h2 class="chrome reveal" data-i18n="nav_portfolio"></h2>
+  <p class="subtitle center reveal" data-i18n="portfolio_sub"></p>
+  <div class="filters reveal">
+    <div class="pills" id="filterStyle" role="group">
+      <button class="pill active" data-filter="all" data-i18n="f_all"></button>
+      <button class="pill" data-filter="anime">Anime</button>
+      <button class="pill" data-filter="chibi">Chibi</button>
+    </div>
+    <div class="pills" id="filterFormat" role="group">
+      <button class="pill active" data-filter="all" data-i18n="f_all"></button>
+      <button class="pill" data-filter="icon">Icon</button>
+      <button class="pill" data-filter="busto" data-i18n="fmt_busto"></button>
+      <button class="pill" data-filter="fullbody">Fullbody</button>
+    </div>
+  </div>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<div class="lace" aria-hidden="true"></div>
+
+<!-- COMMISSIONS -->
+<section id="commissions" class="section">
+  <h2 class="chrome reveal" data-i18n="nav_commissions"></h2>
+  <p class="subtitle center reveal" id="payNote"></p>
+  <div class="price-grid" id="priceGrid"></div>
+  <div class="addons reveal">
+    <h3 data-i18n="addons_title"></h3>
+    <ul id="addonsList"></ul>
+  </div>
+</section>
+
+<!-- COMO PEDIR -->
+<section id="como-pedir" class="section beige">
+  <h2 class="chrome reveal" data-i18n="nav_how"></h2>
+  <ol class="steps">
+    <li class="reveal"><b class="chrome num">1</b><p data-i18n="step1"></p></li>
+    <li class="reveal"><b class="chrome num">2</b><p data-i18n="step2"></p></li>
+    <li class="reveal"><b class="chrome num">3</b><p data-i18n="step3"></p></li>
+    <li class="reveal"><b class="chrome num">4</b><p data-i18n="step4"></p></li>
+  </ol>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" class="section">
+  <h3 class="sec-title reveal" data-i18n="process_title"></h3>
+  <p class="subtitle center reveal" data-i18n="process_sub"></p>
+  <!-- TODO: adicionar img/processo-esboco.jpg e img/processo-final.jpg -->
+  <div class="compare reveal" id="compare">
+    <img src="img/processo-final.jpg" data-fallback="img/placeholder-2.svg" alt="Arte final" loading="lazy">
+    <div class="compare-top" id="compareTop"><img src="img/processo-esboco.jpg" data-fallback="img/placeholder-6.svg" alt="Esboço" loading="lazy"></div>
+    <span class="tag tag-l" data-i18n="sketch"></span><span class="tag tag-r" data-i18n="final"></span>
+    <div class="compare-handle" id="compareHandle"><i>✦</i></div>
+    <input type="range" min="0" max="100" value="50" id="compareRange" aria-label="Esboço / final">
+  </div>
+</section>
+
+<div class="lace" aria-hidden="true"></div>
+
+<!-- TERMOS -->
+<section id="termos" class="section">
+  <h2 class="chrome reveal" data-i18n="nav_terms"></h2>
+  <div class="terms">
+    <div class="term reveal"><h4 data-i18n="t_time_h"></h4><p data-i18n="t_time"></p></div>
+    <div class="term reveal"><h4 data-i18n="t_pay_h"></h4><p data-i18n="t_pay"></p></div>
+    <div class="term reveal"><h4 data-i18n="t_ref_h"></h4><p data-i18n="t_ref"></p></div>
+    <div class="term do reveal"><h4>✓ <span data-i18n="t_do_h"></span></h4><p data-i18n="t_do"></p></div>
+    <div class="term dont reveal"><h4>✗ <span data-i18n="t_dont_h"></span></h4><p data-i18n="t_dont"></p></div>
+    <div class="term warn reveal"><h4>⚠ <span data-i18n="t_client_h"></span></h4><p data-i18n="t_client"></p></div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" class="section beige">
+  <h2 class="chrome reveal" data-i18n="testi_title"></h2>
+  <div class="carousel reveal">
+    <button class="car-btn" id="carPrev" aria-label="←">‹</button>
+    <div class="car-track" id="carTrack">
+      <!-- TODO: trocar pelos depoimentos reais (3 espaços) -->
+      <blockquote><p data-i18n="testi1"></p><cite>— @cliente1</cite></blockquote>
+      <blockquote><p data-i18n="testi2"></p><cite>— @cliente2</cite></blockquote>
+      <blockquote><p data-i18n="testi3"></p><cite>— @cliente3</cite></blockquote>
+    </div>
+    <button class="car-btn" id="carNext" aria-label="→">›</button>
+  </div>
+  <div class="dots" id="carDots"></div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="section about">
+  <h2 class="chrome reveal" data-i18n="nav_about"></h2>
+  <p class="about-text reveal" data-i18n="about_text"></p>
+  <img src="img/mascote.png" data-fallback="img/placeholder.svg" alt="" class="peek" loading="lazy">
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <h3 class="sec-title reveal">FAQ</h3>
+  <div class="faq reveal">
+    <details><summary data-i18n="q1"></summary><p data-i18n="a1"></p></details>
+    <details><summary data-i18n="q2"></summary><p data-i18n="a2"></p></details>
+    <details><summary data-i18n="q3"></summary><p data-i18n="a3"></p></details>
+    <details><summary data-i18n="q4"></summary><p data-i18n="a4"></p></details>
+    <details><summary data-i18n="q5"></summary><p data-i18n="a5"></p></details>
+    <details><summary data-i18n="q6"></summary><p data-i18n="a6"></p></details>
+  </div>
+</section>
+
+<div class="lace" aria-hidden="true"></div>
+
+<!-- CONTATO -->
+<section id="contato" class="section">
+  <h2 class="chrome reveal" data-i18n="nav_contact"></h2>
+  <div class="socials reveal">
+    <a class="social" href="https://www.instagram.com/aoi_kxyu/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
+      <span>Instagram</span><small>@aoi_kxyu</small>
+    </a>
+    <a class="social" href="https://www.tiktok.com/@aoi_kxyu" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.2a3.8 3.8 0 1 1-3.8-3.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M14 3c.3 2.5 1.9 4.2 4.5 4.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <span>TikTok</span><small>@aoi_kxyu</small>
+    </a>
+    <a class="social" href="https://x.com/KunIsaah" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span>X</span><small>@KunIsaah</small>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="x-mark x-foot" aria-hidden="true"></div>
+  <img src="img/logo.png" data-fallback="img/placeholder.svg" alt="baiacuz's comms" class="footer-logo">
+  <p data-i18n="footer_rights"></p>
+  <p class="credit">site por Cammeo</p>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="←">‹</button>
+  <figure>
+    <img id="lbImg" alt="">
+    <figcaption>
+      <span id="lbCaption"></span>
+      <span class="badge" id="lbBadge" data-i18n="badge_commission"></span>
+      <a href="#commissions" class="btn btn-primary" id="lbWant" data-i18n="want_one"></a>
+    </figcaption>
+  </figure>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="→">›</button>
+</div>
+
+<button id="toTop" class="to-top" aria-label="Top">✦</button>
+<div id="cursorLayer" aria-hidden="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
