@@ -65,6 +65,7 @@ const I18N = {
     q4: 'O que enviar de referência?', a4: 'Imagens do personagem (de frente e de costas, se possível), cores, acessórios e a pose/expressão desejada.',
     q5: 'Posso usar a arte em perfil e stream?', a5: 'Sim, com crédito. Revenda e uso em IA são proibidos.',
     q6: 'Posso usar a arte comercialmente?', a6: 'TODO: confirmar a política de uso comercial.',
+    discord_copied: 'copiado! ✦',
     footer_rights: '© Baiacuz — todos os direitos reservados / no AI use'
   },
   en: {
@@ -103,6 +104,7 @@ const I18N = {
     q4: 'What references should I send?', a4: 'Images of the character (front and back if possible), colors, accessories and the desired pose/expression.',
     q5: 'Can I use the art as an avatar or on stream?', a5: 'Yes, with credit. Reselling and AI use are prohibited.',
     q6: 'Can I use the art commercially?', a6: 'TODO: confirm the commercial use policy.',
+    discord_copied: 'copied! ✦',
     footer_rights: '© Baiacuz — all rights reserved / no AI use'
   }
 };
@@ -395,6 +397,14 @@ if (!reduceMotion) {
     if (e.target.closest(CLICK_TARGETS) || e.target.closest('a[href]')) burst(e.clientX, e.clientY);
   });
 }
+
+/* ===== DISCORD: copia o usuário ===== */
+$('#discordBtn').addEventListener('click', async e => {
+  const hint = $('#discordHint'), handle = '@' + e.currentTarget.dataset.handle;
+  try { await navigator.clipboard.writeText(handle); hint.textContent = t('discord_copied'); }
+  catch (err) { hint.textContent = handle; return; }
+  setTimeout(() => { hint.textContent = handle; }, 1800);
+});
 
 /* ===== INIT ===== */
 applyLang(pickLang());
