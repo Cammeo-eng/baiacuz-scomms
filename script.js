@@ -2,10 +2,10 @@
 const COMMISSIONS_OPEN = true;          // true = OPEN, false = CLOSED
 const SLOTS = { taken: 3, total: 5 };   // "Vagas: 3/5"
 
-// Preços. TODO: confirmar os valores em dólar (só anime/icon = US$10 é oficial).
+// Preços (busto = Halfbody na versão EN)
 const PRICES = {
   brl: { anime: { icon: 30, busto: 60, fullbody: 90 }, chibi: { icon: 20, busto: 40, fullbody: 60 } },
-  usd: { anime: { icon: 10, busto: 20, fullbody: 30 }, chibi: { icon: 7, busto: 14, fullbody: 20 } } // TODO
+  usd: { anime: { icon: 10, busto: 20, fullbody: 30 }, chibi: { icon: 5, busto: 15, fullbody: 25 } }
 };
 
 // Portfólio — para adicionar uma arte, inclua uma linha aqui e coloque o arquivo em img/.
@@ -14,7 +14,7 @@ const PRICES = {
 const PORTFOLIO = [
   { file: 'art-10.jpg', style: 'anime', format: 'fullbody', commission: false },
   { file: 'art-03.jpg', style: 'anime', format: 'icon',     commission: true  },
-  { file: 'art-chibi.jpg', style: 'chibi', format: 'fullbody', commission: false }, // TODO: adicionar mais chibis
+  { file: 'exemplo-chibi.png', style: 'chibi', format: 'fullbody', commission: false }, // TODO: adicionar mais chibis
   { file: 'art-08.jpg', style: 'anime', format: 'busto',    commission: true  },
   { file: 'art-12.jpg', style: 'anime', format: 'fullbody', commission: false },
   { file: 'art-02.jpg', style: 'anime', format: 'icon',     commission: false },
@@ -41,7 +41,7 @@ const I18N = {
     pay_note: 'Pagamento apenas via Pix',
     addons_title: 'Adicionais',
     ad_scene: 'Cenário: +60% do valor.',
-    ad_char: '+1 personagem: dobra o valor (ex.: {ex}).',
+    ad_char: '+1 personagem: dobra o valor (ex.: icon {a} + outro personagem {a} = {b}).',
     ad_detail: 'A partir do busto: +20% se o personagem tiver detalhes em excesso.',
     price_icon: 'Icon', price_busto: 'Busto', price_fullbody: 'Fullbody',
     style_anime: 'Estilo Anime', style_chibi: 'Estilo Chibi',
@@ -75,14 +75,14 @@ const I18N = {
     seal_open: 'COMMISSIONS OPEN ✦', seal_closed: 'COMMISSIONS CLOSED ✦', slots: 'Slots',
     featured_cap: 'featured ✦',
     portfolio_sub: 'a little glimpse of my world',
-    f_all: 'All', fmt_busto: 'Bust',
+    f_all: 'All', fmt_busto: 'Halfbody',
     badge_commission: 'Commission', want_one: 'I want one like this',
     pay_note: 'Payment via PayPal only',
     addons_title: 'Add-ons',
     ad_scene: 'Background: +60% of the price.',
-    ad_char: '+1 character: doubles the price (e.g. {ex}).',
-    ad_detail: 'From bust up: +20% if the character has excessive details.',
-    price_icon: 'Icon', price_busto: 'Bust', price_fullbody: 'Fullbody',
+    ad_char: '+1 character: doubles the price (e.g. icon {a} + another character {a} = {b}).',
+    ad_detail: 'From halfbody up: +20% if the character has excessive details.',
+    price_icon: 'Icon', price_busto: 'Halfbody', price_fullbody: 'Fullbody',
     style_anime: 'Anime Style', style_chibi: 'Chibi Style',
     step1: 'Choose your style and format.',
     step2: 'Send your reference via Instagram or X.',
@@ -172,14 +172,14 @@ function renderPrices() {
   grid.innerHTML = ['anime', 'chibi'].map(style => `
     <article class="price-card reveal in" data-style="${style}">
       <h3 class="chrome">${t('style_' + style)}</h3>
-      <div class="price-art"><img src="img/exemplo-${style}.jpg" data-fallback="img/placeholder.svg" alt="" loading="lazy"></div>
+      <div class="price-art"><img src="img/exemplo-${style}.${style === 'chibi' ? 'png' : 'jpg'}" data-fallback="img/placeholder.svg" alt="" loading="lazy"></div>
       ${['icon', 'busto', 'fullbody'].map(f => `
         <div class="price-row" data-format="${f}"><span>${t('price_' + f)}</span><b>${money(P[style][f])}</b></div>`).join('')}
     </article>`).join('');
   const ex = P.anime.icon;
   $('#addonsList').innerHTML = `
     <li>${t('ad_scene')}</li>
-    <li>${t('ad_char').replace('{ex}', `${money(ex)} + ${money(ex)} = ${money(ex * 2)}`)}</li>
+    <li>${t('ad_char').replace(/\{a\}/g, money(ex)).replace('{b}', money(ex * 2))}</li>
     <li>${t('ad_detail')}</li>`;
 }
 
